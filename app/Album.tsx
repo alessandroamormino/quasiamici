@@ -1,6 +1,5 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element -- static export, local covers */
 import { useEffect, useRef, useState } from "react";
 import Ransom from "./Ransom";
 import { audioUrl, coverUrl, lyricsUrl, roman, songs } from "./songs";
