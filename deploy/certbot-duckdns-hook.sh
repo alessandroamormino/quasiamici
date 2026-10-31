@@ -3,7 +3,7 @@
 # Token in /root/.duckdns-token (chmod 600), never in git.
 # Usage: auth hook with no args, cleanup hook with "cleanup".
 set -eu
-TOKEN=$(cat /root/.duckdns-token)
+TOKEN=$(tr -d ' \t\r\n' < /root/.duckdns-token) # strip paste junk
 SUB=${CERTBOT_DOMAIN%.duckdns.org}
 if [ "${1:-}" = cleanup ]; then
   curl -fsS "https://www.duckdns.org/update?domains=$SUB&token=$TOKEN&txt=removed&clear=true" >/dev/null
