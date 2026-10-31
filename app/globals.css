@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-abril: var(--nf-abril);
+  --font-alfa: var(--nf-alfa);
+  --font-anton: var(--nf-anton);
+  --font-bowlby: var(--nf-bowlby);
+  --font-dmserif: var(--nf-dmserif);
+  --font-type: var(--nf-type);
+  --color-punk: #ff2082;
+  --color-acid: #ffec2e;
+  --color-ink: #111111;
+  --color-paper: #f2efe8;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* ponytail: all textures are inline SVG noise, no image assets */
+  --noise-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 5 -3.75'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --noise-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5 -3.75'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  color: var(--color-ink);
+  font-family: var(--nf-type), monospace;
+  background-color: var(--color-punk);
+  background-image:
+    var(--noise-light),
+    radial-gradient(rgb(0 0 0 / 0.13) 1.2px, transparent 1.6px);
+  background-size: 160px 160px, 6px 6px;
+}
+
+@layer components {
+  /* newspaper skins */
+  .skin-black { background: var(--noise-light), #141414; color: var(--color-paper); }
+  .skin-white { background: var(--noise-dark), var(--color-paper); color: var(--color-ink); }
+  .skin-gray  { background: var(--noise-light), #6f6f6f; color: #fff; }
+  .skin-dots  { background: radial-gradient(rgb(255 255 255 / 0.35) 1px, transparent 1.4px) 0 0 / 5px 5px, var(--noise-light), #1b1b1b; color: #fff; }
+  .skin-news  { background: var(--noise-dark), #d9d4c7; color: var(--color-ink); }
+  .skin-acid  { background: var(--noise-dark), var(--color-acid); color: var(--color-ink); }
+
+  /* torn edges */
+  .tear-0 { clip-path: polygon(2% 4%, 30% 0, 62% 3%, 98% 0, 100% 40%, 97% 97%, 60% 100%, 25% 96%, 0 100%, 3% 55%); }
+  .tear-1 { clip-path: polygon(0 0, 45% 3%, 100% 1%, 97% 30%, 100% 100%, 70% 97%, 40% 100%, 4% 97%, 0 60%, 3% 30%); }
+  .tear-2 { clip-path: polygon(4% 2%, 100% 0, 98% 52%, 100% 96%, 55% 100%, 0 98%, 2% 62%, 0 20%); }
+  .tear-3 { clip-path: polygon(0 3%, 20% 0, 100% 4%, 96% 45%, 98% 100%, 30% 97%, 0 100%, 4% 40%); }
+  .tear-card { clip-path: polygon(0 6%, 8% 0, 31% 5%, 52% 1%, 74% 6%, 100% 0, 99% 50%, 100% 94%, 82% 100%, 60% 95%, 38% 100%, 15% 95%, 0 100%, 1% 45%); }
+
+  /* a single ransom-note letter */
+  .cut {
+    display: inline-block;
+    line-height: 1;
+    padding: 0.08em 0.14em 0.04em;
+    rotate: var(--r);
+    animation:
+      drop 0.55s var(--d) cubic-bezier(0.2, 1.5, 0.4, 1) both,
+      jitter 2.8s calc(var(--d) + 1s) steps(1) infinite;
+    transition: scale 0.2s ease-out;
+  }
+  .cut:hover { scale: 1.15; }
+
+  .tape {
+    background: var(--noise-dark), var(--color-acid);
+    color: var(--color-ink);
+    clip-path: polygon(0 10%, 4% 0, 96% 8%, 100% 0, 99% 90%, 96% 100%, 3% 92%, 0 100%);
+  }
+}
+
+@keyframes drop {
+  from { opacity: 0; transform: translateY(-40px) scale(1.8) rotate(-20deg); }
+  to { opacity: 1; transform: none; }
+}
+/* stop-motion wobble, like letters glued down badly */
+@keyframes jitter {
+  0% { transform: none; }
+  33% { transform: rotate(-3deg) translateY(-1px); }
+  66% { transform: rotate(2deg); }
+}
+@keyframes snippet {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes eq {
+  0%, 100% { transform: scaleY(0.3); }
+  50% { transform: scaleY(1); }
+}
+
+input[type="range"] { accent-color: var(--color-acid); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }

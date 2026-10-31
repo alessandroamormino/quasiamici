@@ -1,0 +1,13 @@
+# Sul VPS: nessuna porta pubblicata. Il nginx in docker (rete "webstack")
+# raggiunge questo container come http://quasiamici:80
+services:
+  quasiamici:
+    build: .
+    container_name: quasiamici
+    restart: unless-stopped
+    networks:
+      - webstack
+
+networks:
+  webstack:
+    external: true
