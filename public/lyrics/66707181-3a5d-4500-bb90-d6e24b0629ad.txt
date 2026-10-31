@@ -1,8 +1,11 @@
+[pre-intro]
+Pronto Prontoooo Hei Hei!
+
 [intro]
-Sono sveglio dalle cinqueeee
+Sono sveglio dalle cinquee
 e ho visto tutte le ore pariiiii
-Mi preparo e vado all’Ipeeeer
-Maledetti questi orariii
+Mi preparo e vado all’Iper
+Maledetti questi orari.
 
 [Pre-ritornello]
 Mi ha chiamato: Chris,
@@ -13,17 +16,16 @@ Che mi vuole ad Erbusco:
 DIOCÀNEEEEE
 
 [ritornello]
-E Non mi pagano la trasfertaaaa,
+E Non mi pagano la trasfértaaaa,
 Ci sarà una coda di merdaaaaa
 E io che sono sempre in riservaaaaa
 Bestemmierò in corsia d’emergenzaaaaa….
 
 [strofa]
-…Sto con Kappa da 10 anniii, (poverinaaa)
+…Sto con Kappa da 10 anniii, 
 Lei vorrebbe Dei figli, una casaaa
 Io che invece c’ho 5 euro
-Posso offrirlee 
-una birraa
+Posso offrirle una birra
 (Smezzataa)
 
 [pre-bridge]
@@ -39,17 +41,27 @@ Che mi vuole ad Erbusco
 DIOCÀNEEEEE
 
 [Chorus]
-Non mi pagano la trasfertaaaa,
+Non mi pagano la trasfértaaaa,
 Ci sarà una coda di merdaaaaa
 E io che sono sempre in riservaaaaa
 Bestemmierò in corsia d’emergenzaaaaa….
 
 [Strofa]
-…Torno a caso che sto svapandooo
+…Torno a casa che sto svapandooo
 E non so se sperare nell’incidenteee
 O nell’infartoooooooo….
 
 Nell’infarto.
 
-[ending]
+[ending x2]
 ..Mi salvano giusto le tette e il cuore sopra i trentasette…
+..Mi salvano giusto le tette e il cuore sopra i trentasette…
+
+[a capella horus]
+Non mi pagano la trasfértaaaa,
+Ci sarà una coda di merdaaaaa
+E io che sono sempre in riservaaaaa
+Bestemmierò in corsia d’emergenzaaaaa….
+
+[outro intrumental]
+DIOCÀNEEEEE
