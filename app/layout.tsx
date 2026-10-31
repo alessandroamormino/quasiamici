@@ -11,7 +11,7 @@ const dmserif = DM_Serif_Display({ variable: "--nf-dmserif", weight: "400", subs
 const type = Special_Elite({ variable: "--nf-type", weight: "400", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "QUASI AMICI — l'album",
+  title: "QUASI AMICI",
   description: "Tredici pezzi. Zero rimorsi.",
 };
 
