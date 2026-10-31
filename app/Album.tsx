@@ -150,13 +150,15 @@ export default function Album() {
         </button>
       </div>
 
-      <main className="mx-auto max-w-2xl px-5 pb-56 pt-14">
+      <main className="mx-auto max-w-2xl px-4 pb-56 pt-10 sm:px-5 sm:pt-14">
         <header className="mb-16 flex flex-col items-center">
-          <h1 className="flex flex-col items-center gap-2 text-7xl drop-shadow-[0_6px_0_rgb(0_0_0/0.3)] sm:text-[8.5rem]">
+          {/* ponytail: 15vw keeps 5 cut-out letters inside a 320px screen */}
+          <h1 className="flex flex-col items-center gap-2 text-[clamp(3rem,15vw,8.5rem)] drop-shadow-[0_6px_0_rgb(0_0_0/0.3)]">
             <Ransom text="QUASI" />
-            <Ransom text="AMICI" delay={350} className="ml-16" />
+            <Ransom text="AMICI" delay={350} className="ml-[8vw] sm:ml-16" />
           </h1>
-          <div className="mt-6 flex flex-col items-end self-end text-lg sm:mr-6 sm:text-2xl">
+          <div className="mt-6 flex flex-col items-end self-end text-base sm:mr-6 sm:text-2xl">
+            <span className="tape mb-1 rotate-3 self-start px-2 font-bowlby text-xs uppercase sm:text-sm">vol. 1</span>
             <span className="tape -rotate-2 px-3 py-0.5">{songs.length} pezzi</span>
             <span className="tape -mt-1 rotate-1 px-3 py-0.5">fatti con suno, senza vergogna</span>
           </div>
@@ -180,21 +182,21 @@ export default function Album() {
                   onMouseLeave={stopPreview}
                   disabled={s.soon}
                   aria-current={selected}
-                  className={`${skin} tear-card group/card relative flex w-full items-center gap-4 px-4 py-4 text-left transition-all duration-300 ease-out
+                  className={`${skin} tear-card group/card relative flex w-full items-center gap-3 px-3 py-3 sm:gap-4 sm:px-4 sm:py-4 text-left transition-all duration-300 ease-out
                     hover:-translate-y-1 hover:scale-[1.04] hover:-rotate-2 disabled:cursor-not-allowed ${selected ? "scale-[1.07] -rotate-2" : tilt}`}
                 >
                   {s.soon ? (
-                    <span className="skin-dots grid size-14 shrink-0 rotate-2 place-items-center font-abril text-3xl">?</span>
+                    <span className="skin-dots grid size-12 shrink-0 sm:size-14 rotate-2 place-items-center font-abril text-3xl">?</span>
                   ) : (
                     <img
                       src={coverUrl(s.id)}
                       alt=""
                       className={`shrink-0 rotate-2 object-cover transition-all duration-300 ease-out group-hover/card:grayscale-0
-                        ${selected ? "size-24 grayscale-0" : "size-14 contrast-125 grayscale"}`}
+                        ${selected ? "size-16 grayscale-0 sm:size-24" : "size-12 contrast-125 grayscale sm:size-14"}`}
                     />
                   )}
-                  <span className="font-bowlby w-10 text-sm text-punk">{roman(i + 1)}</span>
-                  <span className={`flex-1 uppercase leading-tight transition-all duration-300 ${selected ? "text-2xl" : "text-lg"}`}>
+                  <span className="font-bowlby w-8 shrink-0 text-sm text-punk sm:w-10">{roman(i + 1)}</span>
+                  <span className={`flex-1 uppercase leading-tight transition-all duration-300 ${selected ? "text-xl sm:text-2xl" : "text-base sm:text-lg"}`}>
                     {s.title}
                   </span>
                   {s.soon && <span className="tape -rotate-3 px-2 py-0.5 text-xs uppercase">coming soon</span>}
@@ -219,7 +221,7 @@ export default function Album() {
         {/* lyrics drawer: grid-rows trick animates height smoothly */}
         <div className={`mx-auto grid max-w-2xl px-4 transition-all duration-500 ease-out ${showLyrics ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
           <div className="overflow-hidden">
-            <div className="skin-white tear-card mb-[-10px] max-h-[50vh] overflow-y-auto px-6 pb-8 pt-6">
+            <div className="skin-white tear-card mb-[-10px] max-h-[55dvh] overflow-y-auto px-5 sm:px-6 pb-8 pt-6">
               {song && (lyrics[song.id] ?? "…").split("\n").map((line, i) =>
                 /^\s*\[.*\]\s*$/.test(line) ? (
                   <span key={i} className="mt-4 mb-1 inline-block -rotate-1 bg-punk px-2 text-xs uppercase text-white">
@@ -233,35 +235,36 @@ export default function Album() {
           </div>
         </div>
 
-        <div className="skin-black tear-card pt-2">
-          <div className="mx-auto flex max-w-3xl items-center gap-4 px-4 pb-3 pt-4">
-            {song && <img src={coverUrl(song.id)} alt="" className="size-14 shrink-0 -rotate-3 object-cover" />}
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-lg uppercase">{song?.title}</p>
+        <div className="skin-black tear-card pt-2 pb-[env(safe-area-inset-bottom)]">
+          {/* mobile: [cover title ctrls] / [bar bar testo]; sm+: bar sits under the title */}
+          <div className="mx-auto grid max-w-3xl grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 px-4 pb-3 pt-4 sm:grid-cols-[auto_minmax(0,1fr)_auto_auto] sm:gap-x-4">
+            {song && <img src={coverUrl(song.id)} alt="" className="col-start-1 row-start-1 size-12 -rotate-3 object-cover sm:row-span-2 sm:size-14" />}
+            <div className="col-start-2 row-start-1 min-w-0">
+              <p className="truncate uppercase sm:text-lg">{song?.title}</p>
               {blocked && <p className="text-xs text-acid">il browser ha bloccato l&apos;audio: premi ▶</p>}
-              <div className="flex items-center gap-2 text-xs text-paper/60">
-                <span className="w-9 tabular-nums">{fmt(time)}</span>
-                <input
-                  type="range"
-                  min={0}
-                  max={duration || 0}
-                  step={0.1}
-                  value={time}
-                  onChange={(e) => { if (main.current) main.current.currentTime = +e.target.value; }}
-                  aria-label="Posizione"
-                  className="flex-1"
-                />
-                <span className="w-9 tabular-nums">{fmt(duration)}</span>
-              </div>
+            </div>
+            <div className="col-span-2 col-start-1 row-start-2 flex items-center gap-2 text-xs text-paper/60 sm:col-span-1 sm:col-start-2">
+              <span className="w-9 tabular-nums">{fmt(time)}</span>
+              <input
+                type="range"
+                min={0}
+                max={duration || 0}
+                step={0.1}
+                value={time}
+                onChange={(e) => { if (main.current) main.current.currentTime = +e.target.value; }}
+                aria-label="Posizione"
+                className="min-w-0 flex-1"
+              />
+              <span className="w-9 tabular-nums">{fmt(duration)}</span>
             </div>
             <button
               onClick={() => setShowLyrics((v) => !v)}
               aria-pressed={showLyrics}
-              className={`px-2 py-1 text-xs uppercase transition hover:-rotate-3 ${showLyrics ? "tape" : "border border-paper/40 text-paper"}`}
+              className={`col-start-3 row-start-2 justify-self-end px-2 py-1 text-xs uppercase transition hover:-rotate-3 sm:row-span-2 sm:row-start-1 ${showLyrics ? "tape" : "border border-paper/40 text-paper"}`}
             >
               testo
             </button>
-            <div className="flex items-center gap-1">
+            <div className="col-start-3 row-start-1 flex items-center gap-1 sm:col-start-4 sm:row-span-2">
               <Ctrl label="Precedente" onClick={prev} d="M6 5h2v14H6zM20 5v14L9 12z" />
               <button
                 onClick={toggle}

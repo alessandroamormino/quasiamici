@@ -21,6 +21,7 @@
 
 body {
   min-height: 100vh;
+  overflow-x: clip; /* tilted/scaled cards must not cause sideways scroll */
   color: var(--color-ink);
   font-family: var(--nf-type), monospace;
   background-color: var(--color-punk);

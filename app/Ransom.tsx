@@ -7,7 +7,7 @@ const ROT = [-6, 4, -2, 7, -4, 3, -8, 5];
 // ponytail: deterministic "random" per letter index, so SSR and client match
 export default function Ransom({ text, className = "", delay = 0 }: { text: string; className?: string; delay?: number }) {
   return (
-    <span aria-label={text} role="img" className={`inline-flex flex-wrap items-end justify-center gap-[0.06em] ${className}`}>
+    <span aria-label={text} role="img" className={`inline-flex items-end justify-center gap-[0.06em] ${className}`}>
       {[...text].map((ch, i) =>
         ch === " " ? (
           <span key={i} className="w-[0.35em]" />
