@@ -17,7 +17,7 @@ export const songs: Song[] = [
   { id: "3b5f627d-1016-4720-af84-ea34da52ee16", title: "Insopportabile" },
   { id: "f1b4f325-fe42-46a6-a233-81df2b3f3916", title: "Idealista" },
   { id: "33d48c03-2100-458b-87b4-94df447d428b", title: "Puoi lavorare?" },
-  { id: "papi-te-quiero", title: "Papi te quiero", soon: true },
+  { id: "papi-te-quiero", title: "Papi te quiero" },
   { id: "e7f1a62a-a961-413e-a2f0-64b7141157e8", title: "Trenino Thomas" },
   { id: "49fddb9a-ff1f-4a1d-90c6-53fdf1599d48", title: "Outro" },
 ];
